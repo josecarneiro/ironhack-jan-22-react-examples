@@ -1,25 +1,17 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { listAds } from './../services/ads';
-
-const HomePage = () => {
-  const [ads, setAds] = useState([]);
-
-  useEffect(() => {
-    listAds().then((list) => {
-      setAds(list);
-    });
-  }, []);
-
+function ProjectsPage(props) {
   return (
     <div>
-      {ads.map((ad) => (
-        <Link key={ad._id} to={`/ad/${ad._id}`}>
-          <h3>{ad.title}</h3>
-        </Link>
-      ))}
+      <h1>Projects</h1>
+      {props.projects.map((project) => {
+        return (
+          <div key={project._id} className="project">
+            <h3>{project.name}</h3>
+            <p>{project.technologies}</p>
+          </div>
+        );
+      })}
     </div>
   );
-};
+}
 
-export default HomePage;
+export default ProjectsPage;
